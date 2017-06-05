@@ -3,10 +3,14 @@ var Race = function(name, map) {
     this.map = map; // mapa de la carrera
     this.runnersData = []; //arreglo de corredores, aca se agregan instancias de runner.
 
-    
-    this.addRunner = function(runner) {      
-        //Creamos el layer en el mapa para ese runner
-        var runnerLayer = L.layerGroup().addTo(this.map);
+
+    this.addRunner = function(runner) {
+
+      //Creamos el layer en el mapa para ese runner
+        var runnerLayer = L.featureGroup().addTo(this.map); // es un featureGroup
+        //porque el mismo permite bindear comportamiento a todos los elementos del layer.
+
+        runnerLayer.bindPopup("Corredor " + runner.name + "!"); // bindeo de un popup a todos los markers del grupo.
         // Agregamos el layer al control
         this.map.layersControl.addOverlay(runnerLayer, runner.name);
 
@@ -14,8 +18,12 @@ var Race = function(name, map) {
             console.log("Updating view for runner: " + runner.name + "!!");
             console.log(newPosition);
 
-            // Opción 1.            
+            // borando los markers ya mostrados.
+            runnerLayer.clearLayers();
+
+            // Opción 1.
             runnerLayer.addLayer(L.marker(newPosition));
+
             // Opción 2.
              runnerLayer.addLayer(L.circleMarker(newPosition, {
                                      radius: 7,
