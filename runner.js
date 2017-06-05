@@ -6,7 +6,7 @@ var Runner = function(name, historyPositions) {
 
   //inicialización del indice para recorrer el arreglo de posiciones
   //historicas
-  var indiceActual = 0;   
+  var indiceActual = 0;
   //function que recorre las posiciones una a una
   //ejecutando la function callback pasada como parametro
   //(esta function seguramente dibuja en el mapa.)
