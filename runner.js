@@ -1,8 +1,12 @@
-var Runner = function(name, historyPositions) {
+var Runner = function(id, name, surname, sponsor, positions) {
   //el nombre del corredor
+  this.id = id;
+  
   this.name = name;
+  this.surname = surname;
+  this.sponsor = sponsor;
   //el arreglo de posiciones en las que estuvo
-  this.historyPositions = historyPositions;
+  this.positions = positions;
 
   //inicialización del indice para recorrer el arreglo de posiciones
   //historicas

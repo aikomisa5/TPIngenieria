@@ -1,0 +1,32 @@
+{
+  "runner": {
+    "id": 780,
+    "name": "Barry",
+    "surname": "Allen",
+    "sponsor": {
+      "id": 2,
+      "name": "Nakidas"
+    },
+    "positions": [{
+      "lat": -34.522739,
+      "lon": -58.702329
+    }, {
+      "lat": -34.522992,
+      "lon": -58.702572
+    }, {
+      "lat": -34.523191,
+      "lon": -58.702801
+    }, {
+      "lat": -34.523412,
+      "lon": -58.703056
+    }, {
+      "lat": -34.523643,
+      "lon": -58.703299
+    }]
+  },
+  "version": {
+    "id": "0.1.1",
+    "name": "fastspeedster",
+    "lastupdate": 1496870562614
+  }
+}
