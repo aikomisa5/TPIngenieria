@@ -5,12 +5,8 @@ function bootstrap() {
   var webcamsSource = "https://fastspeedster.herokuapp.com/api/webcams/42/";
 
 
-  // Ubicación de la UNGS.
-  var ungsLocation = [-34.5221554, -58.7000067]; //default location
-
-  // Creación del componente mapa de Leaflet.
-  //L es Leaflet, al parecer.
-  var map = L.map("mapid").setView(ungsLocation, 15);
+  // Creación del componente mapa de Leaflet.  
+  map = L.map("mapid"); // no se declara var para que sea global a todas las clases.
 
   // Agregamos los Layers de OpenStreetMap.
   var baseLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -25,10 +21,9 @@ function bootstrap() {
   });
   layersControl.addTo(map);
 
-
   // ejecuta una http request al server y cuando la respuesta es OK, ejecuta un
   // callback sobre los datos recibidos.
-  function requestJSON(url, callback) {
+  requestJSON = function(url, callback) { // no se declara var para que sea global a todas las clases
     var xhttp;
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -42,64 +37,7 @@ function bootstrap() {
     xhttp.send();
   }
 
-  function TrackLoader(url, trackID) {
-    this.url = url;
-    this.trackID = trackID;
-    
-    var latlngs = [];
-    this.loadTrack = function() {
-      // recibe el track a procesar
-      
-      function generarArrayDeTrackPositions(track) {
-        console.log("generando array de coordenadas de mapa: "+ track.id);
-        for (var i in track.coordinates) {
-          console.log("coordenada "+ i + ": " + track.coordinates[i].lat + ", " + track.coordinates[i].lon);
-          latlngs.push([track.coordinates[i].lat, track.coordinates[i].lon]);
-        }
-      }
-      
-      function cargarMapa(trackResponse) {
-        console.log("callback llamado");
-        generarArrayDeTrackPositions(trackResponse.track);
-        
-        console.log("añadiendo circuito a mapa");
-        var circuito = L.polygon(latlngs, {color: 'red'}).addTo(map);
-        // zoom the map to the polygon
-        map.fitBounds(circuito.getBounds());
-      }       
-      
-      console.log("ejecutando request sobre url: "+ url + trackID);
-      requestJSON(url + trackID, cargarMapa);
-     
-    }
-
-  }
-
   map.layersControl = layersControl; // aca se setea como controlador de capas que se muestran en el mapa al objeto "layersControl":
-
-  //Ejemplos de como agregar marcadores y poligonos al mapa.
-
-  // Creamos un círculo con centro en la UNGS.
-  var circle = L.circle(ungsLocation, {
-    color: '#0000AA',
-    fillColor: '#0000CC',
-    fillOpacity: 0.2,
-    radius: 300
-  }).addTo(map);
-
-  // Creamos un polígono.
-  L.polygon([
-    L.latLng(-34.515594, -58.705654),
-    L.latLng(-34.523503, -58.714062),
-    L.latLng(-34.519177, -58.719890),
-    L.latLng(-34.511089, -58.711374),
-    L.latLng(-34.514062, -58.707909),
-    L.latLng(-34.513824, -58.707584),
-  ]).addTo(map);
-
-  // Creamos un marker sobre la UNGS.
-  var ungsMarker = L.marker(ungsLocation);
-  ungsMarker.addTo(map);
 
   console.log("creando Trackloader");
   var trackLoader = new TrackLoader(trackSource, 42);
@@ -151,4 +89,4 @@ function bootstrap() {
   race1K.start();
 }
 
-$(bootstrap); // alguna tecnologia de javaScript, investigar.
+$(bootstrap);
