@@ -1,19 +1,19 @@
   function RunnersLoader(url) {
-    this.url = url;    
+    this.url = url;
 
     var runners = [];
     this.loadRunnersTo = function(race, positionsLoader) {
-      
+
       // recibe los runners a procesar
       function generarArrayDeRunners(runnersData) {
         console.log("generando array de runners:");
-        for (var i in runnersData) { 
+        for (var i in runnersData) {
           var runner = new Runner(runnersData[i].id,
-                                  runnersData[i].name,
-                                  runnersData[i].surname,
-                                  runnersData[i].sponsor,
-                                  runnersData[i].surname
-                                 ); 
+            runnersData[i].name,
+            runnersData[i].surname,
+            runnersData[i].sponsor,
+            runnersData[i].surname
+          );
           console.log(runner.showDetails());
           runners.push(runner);
         }
@@ -24,16 +24,16 @@
         generarArrayDeRunners(runnersResponse.runners);
 
         console.log("añadiendo runners a carrera");
-        runners.forEach(function (runner){
+        runners.forEach(function(runner) {
           race.addRunner(runner);
           console.log(runner.showDetails() + " añadido");
         });
-        
+
         console.log("loadPositions");
         positionsLoader.loadRunnersPositionsTo(race);
       }
 
-      console.log("ejecutando request sobre url: " + url);      
+      console.log("ejecutando request sobre url: " + url);
       requestJSON(url, cargarRunners);
 
     }

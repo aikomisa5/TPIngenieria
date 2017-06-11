@@ -10,14 +10,15 @@
         console.log("generando array de positions:");
         for (var i in runnersPositionsData) {
           var positionsData = [];
-          for(j in runnersPositionsData[i].positions){
+          for (var j in runnersPositionsData[i].positions) {
             positionsData.push(new Position(runnersPositionsData[i].positions[j].lat,
               runnersPositionsData[i].positions[j].lon));
           }
-          var runnerPosition = {id: runnersPositionsData[i].runner,
-                                positions: positionsData
-                               };
-                               console.log(runnerPosition.positions);
+          var runnerPosition = {
+            id: runnersPositionsData[i].runner,
+            positions: positionsData
+          };
+          console.log(runnerPosition.positions);
           runnersPositions.push(runnerPosition);
         }
       }
@@ -27,7 +28,7 @@
         generarArrayDeRunnersPositions(RunnersPositionsResponse.positions);
 
         console.log("asociando posiciones a corredores");
-        runnersPositions.forEach(function (runnerPosition){
+        runnersPositions.forEach(function(runnerPosition) {
           race.bindRunnerPosition(runnerPosition);
         });
       }

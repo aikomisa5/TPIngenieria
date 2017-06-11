@@ -5,7 +5,7 @@ var Runner = function(id, name, surname, sponsor) {
   this.surname = surname;
   this.sponsor = sponsor;
   this.historyPositions = [];
-  this.addPosition = function(lat, lon){
+  this.addPosition = function(lat, lon) {
     this.historyPositions.push(new Position(lat, lon));
   }
 

@@ -9,11 +9,13 @@ var Race = function(name, map) {
     this.runnersData.forEach(function(data) {
       var runner = data.runner;
       if (runner.id == runnerPosition.id) {
-        console.log("Posiciones a cargar: ");
-        for( var i in runnerPosition.positions){
-          runner.addPosition(runnerPosition.positions[i].lat,runnerPosition.positions[i].lon);
+        for (var i in runnerPosition.positions) {
+          runner.addPosition(runnerPosition.positions[i].lat, runnerPosition.positions[i].lon);
         }
-        console.log("posiciones asociadas a " + runner.showDetails() + " posiciones: " + runner.historyPositions);
+        console.log("posiciones asociadas a " + runner.showDetails() + " posiciones:");
+        runner.historyPositions.forEach(function(position) {
+          console.log(position);
+        });
       }
     });
 
@@ -31,26 +33,26 @@ var Race = function(name, map) {
     this.map.layersControl.addOverlay(runnerLayer, runner.name);
 
     var updater = function(newPosition) {
-      if (typeof newPosition != "undefined"){
-      console.log("Updating view for runner: " + runner.name + "!!");
-      console.log(newPosition);
+      if (typeof newPosition != "undefined") {
+        console.log("Updating view for runner: " + runner.name + "!!");
+        console.log(newPosition);
 
-      // borando los markers ya mostrados.
-      runnerLayer.clearLayers();
+        // borando los markers ya mostrados.
+        runnerLayer.clearLayers();
 
-      // Opción 1.
-      runnerLayer.addLayer(L.marker([newPosition.lat,newPosition.lon]));
+        // Opción 1.
+        runnerLayer.addLayer(L.marker([newPosition.lat, newPosition.lon]));
 
-      // Opción 2.
-      runnerLayer.addLayer(L.circleMarker(newPosition, {
-        radius: 7,
-        fillColor: "#00AA00",
-        color: "#DDD",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.3
-      }));
-    }
+        // Opción 2.
+        runnerLayer.addLayer(L.circleMarker(newPosition, {
+          radius: 7,
+          fillColor: "#00AA00",
+          color: "#DDD",
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.3
+        }));
+      }
     }
 
     // agregar a la carrera cada corredor, con el updater asociado

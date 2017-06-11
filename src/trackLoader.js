@@ -26,7 +26,7 @@
         map.fitBounds(circuito.getBounds());
       }
 
-      console.log("ejecutando request sobre url: " + url + trackID);      
+      console.log("ejecutando request sobre url: " + url + trackID);
       requestJSON(url + trackID, cargarMapa);
 
     }
