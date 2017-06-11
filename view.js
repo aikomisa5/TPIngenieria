@@ -1,4 +1,4 @@
-//Este modulo inicializa el mapa y pone en marcha la carrera. 
+//Este modulo inicializa el mapa y pone en marcha la carrera.
 function bootstrap() {
   var trackSource = "https://fastspeedster.herokuapp.com/api/tracks/";
   var runnersSource = "https://fastspeedster.herokuapp.com/api/runners/";
@@ -6,7 +6,7 @@ function bootstrap() {
   var webcamsSource = "https://fastspeedster.herokuapp.com/api/webcams/42/";
 
 
-  // Creación del componente mapa de Leaflet.  
+  // Creación del componente mapa de Leaflet.
   var map = L.map("mapid"); // no se declara var para que sea global a todas las clases.
 
   // Agregamos los Layers de OpenStreetMap.
@@ -44,20 +44,19 @@ function bootstrap() {
   var trackLoader = new TrackLoader(trackSource, 42);
   console.log("loadTrack");
   trackLoader.loadTrack(map);
-  
+
   console.log("creando Race");
   var race1K = new Race("1K", map);
 
   console.log("creando Runnersloader");
   var runnersLoader = new RunnersLoader(runnersSource);
-  
+
   console.log("creando Positionsloader");
   var positionsLoader = new PositionsLoader(positionsSource);
-  
+
   console.log("loadRunners");
   runnersLoader.loadRunnersTo(race1K, positionsLoader);
 
-  race1K.start();
 }
 
 $(bootstrap);

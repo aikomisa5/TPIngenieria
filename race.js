@@ -2,17 +2,22 @@ var Race = function(name, map) {
   this.name = name; // nombre de la carrera
   this.map = map; // mapa de la carrera
   this.runnersData = []; //arreglo de corredores, aca se agregan instancias de runner.
-  
+
   // dada una posición, busca el runner al que le corresponde
-  // y la asocia al mismo.  
+  // y la asocia al mismo.
   this.bindRunnerPosition = function(runnerPosition) {
     this.runnersData.forEach(function(data) {
       var runner = data.runner;
       if (runner.id == runnerPosition.id) {
-        console.log("posiciones asociadas a " + runner.showDetails() + " posiciones: " + runner.positions);
-        runner.positions = runnerPosition.positions;
+        console.log("Posiciones a cargar: ");
+        for( var i in runnerPosition.positions){
+          runner.addPosition(runnerPosition.positions[i].lat,runnerPosition.positions[i].lon);
+        }
+        console.log("posiciones asociadas a " + runner.showDetails() + " posiciones: " + runner.historyPositions);
       }
     });
+
+    this.start();
   }
 
   this.addRunner = function(runner) {
@@ -26,6 +31,7 @@ var Race = function(name, map) {
     this.map.layersControl.addOverlay(runnerLayer, runner.name);
 
     var updater = function(newPosition) {
+      if (typeof newPosition != "undefined"){
       console.log("Updating view for runner: " + runner.name + "!!");
       console.log(newPosition);
 
@@ -33,7 +39,7 @@ var Race = function(name, map) {
       runnerLayer.clearLayers();
 
       // Opción 1.
-      runnerLayer.addLayer(L.marker(newPosition));
+      runnerLayer.addLayer(L.marker([newPosition.lat,newPosition.lon]));
 
       // Opción 2.
       runnerLayer.addLayer(L.circleMarker(newPosition, {
@@ -44,6 +50,7 @@ var Race = function(name, map) {
         opacity: 1,
         fillOpacity: 0.3
       }));
+    }
     }
 
     // agregar a la carrera cada corredor, con el updater asociado
