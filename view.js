@@ -2,11 +2,12 @@
 function bootstrap() {
   var trackSource = "https://fastspeedster.herokuapp.com/api/tracks/";
   var runnersSource = "https://fastspeedster.herokuapp.com/api/runners/";
+  var positionsSource = "https://fastspeedster.herokuapp.com/api/positions/";
   var webcamsSource = "https://fastspeedster.herokuapp.com/api/webcams/42/";
 
 
   // Creación del componente mapa de Leaflet.  
-  map = L.map("mapid"); // no se declara var para que sea global a todas las clases.
+  var map = L.map("mapid"); // no se declara var para que sea global a todas las clases.
 
   // Agregamos los Layers de OpenStreetMap.
   var baseLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -21,14 +22,14 @@ function bootstrap() {
   });
   layersControl.addTo(map);
 
-  // ejecuta una http request al server y cuando la respuesta es OK, ejecuta un
+  // ejecuta un http request al server y cuando la respuesta es OK, ejecuta un
   // callback sobre los datos recibidos.
   requestJSON = function(url, callback) { // no se declara var para que sea global a todas las clases
     var xhttp;
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        console.log("Request OK");
+        console.log("Request status " + this.statusText);
         console.log("llamando funcion callback: " + callback);
         callback(JSON.parse(this.responseText));
       }
@@ -42,50 +43,20 @@ function bootstrap() {
   console.log("creando Trackloader");
   var trackLoader = new TrackLoader(trackSource, 42);
   console.log("loadTrack");
-  trackLoader.loadTrack();
+  trackLoader.loadTrack(map);
   
-  // Creamos una carrera
+  console.log("creando Race");
   var race1K = new Race("1K", map);
 
-  // Pepe, le asigna el nombre junto con la lista de todas sus posiciones.
-  //   var pepe = new Runner("Pepe", [{
-  //     lon: -58.695290,
-  //     lat: -34.524297
-  //   }, {
-  //     lon: -58.697030,
-  //     lat: -34.522856
-  //   }, {
-  //     lon: -58.698210,
-  //     lat: -34.521874
-  //   }]);
+  console.log("creando Runnersloader");
+  var runnersLoader = new RunnersLoader(runnersSource);
+  
+  console.log("creando Positionsloader");
+  var positionsLoader = new PositionsLoader(positionsSource);
+  
+  console.log("loadRunners");
+  runnersLoader.loadRunnersTo(race1K, positionsLoader);
 
-  //   //Agregando al corredor pepe a la carrera (race.js)
-  //   race1K.addRunner(pepe);
-
-  //   // Bolt!, le asigna el nombre junto con la lista de todas sus posiciones.
-  //   var bolt = new Runner("Bolt", [{
-  //     lon: -58.702329,
-  //     lat: -34.522739
-  //   }, {
-  //     lon: -58.702572,
-  //     lat: -34.522992
-  //   }, {
-  //     lon: -58.702801,
-  //     lat: -34.523191
-  //   }, {
-  //     lon: -58.703056,
-  //     lat: -34.523412
-  //   }, {
-  //     lon: -58.703299,
-  //     lat: -34.523643
-  //   }]);
-  //   //Agregando al corredor bolt la carrer (race.js)
-  //   race1K.addRunner(bolt);
-
-
-  // lanza el metodo start de la carrera (race.js). 
-  // cada un segundo, lee la lista de posiciones de cada participante y las muestra
-  // en el mapa.
   race1K.start();
 }
 

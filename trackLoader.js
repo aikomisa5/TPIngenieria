@@ -3,7 +3,7 @@
     this.trackID = trackID;
 
     var latlngs = [];
-    this.loadTrack = function() {
+    this.loadTrack = function(map) {
       // recibe el track a procesar
 
       function generarArrayDeTrackPositions(track) {
@@ -26,7 +26,7 @@
         map.fitBounds(circuito.getBounds());
       }
 
-      console.log("ejecutando request sobre url: " + url + trackID);
+      console.log("ejecutando request sobre url: " + url + trackID);      
       requestJSON(url + trackID, cargarMapa);
 
     }

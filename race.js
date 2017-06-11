@@ -2,7 +2,18 @@ var Race = function(name, map) {
   this.name = name; // nombre de la carrera
   this.map = map; // mapa de la carrera
   this.runnersData = []; //arreglo de corredores, aca se agregan instancias de runner.
-
+  
+  // dada una posición, busca el runner al que le corresponde
+  // y la asocia al mismo.  
+  this.bindRunnerPosition = function(runnerPosition) {
+    this.runnersData.forEach(function(data) {
+      var runner = data.runner;
+      if (runner.id == runnerPosition.id) {
+        console.log("posiciones asociadas a " + runner.showDetails() + " posiciones: " + runner.positions);
+        runner.positions = runnerPosition.positions;
+      }
+    });
+  }
 
   this.addRunner = function(runner) {
 

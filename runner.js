@@ -1,10 +1,10 @@
-var Runner = function(id, name, surname, sponsor, positions) {
+var Runner = function(id, name, surname, sponsor) {
   
   this.id = id; 
   this.name = name;
   this.surname = surname;  
   this.sponsor = sponsor;  
-  this.historyPositions = positions;
+  this.historyPositions = [];
 
   //inicialización del indice para recorrer el arreglo de posiciones
   //historicas
@@ -21,5 +21,9 @@ var Runner = function(id, name, surname, sponsor, positions) {
         self.run(mapUpdaterCorredor);
       }
     }, 1000); //1000 ms -> 1 s, la function se ejecuta cada 1 segundo.
+  }
+  
+  this.showDetails = function() {
+    return "corredor: " + name + " " + surname + ", sponsor: " + sponsor.name;
   }
 };
