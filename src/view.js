@@ -1,18 +1,17 @@
 //Este modulo inicializa el mapa y pone en marcha la carrera.
 function bootstrap() {
+
   var trackSource = "https://fastspeedster.herokuapp.com/api/tracks/";
   var runnersSource = "https://fastspeedster.herokuapp.com/api/runners/";
   var positionsSource = "https://fastspeedster.herokuapp.com/api/positions/";
-  var webcamsSource = "https://fastspeedster.herokuapp.com/api/webcams/42/";
-
+  var webcamsSource = "https://fastspeedster.herokuapp.com/api/webcams/42/"; // este es solo la camara 42 no?¿
 
   // Creación del componente mapa de Leaflet.
   var map = L.map("mapid"); // no se declara var para que sea global a todas las clases.
 
   // Agregamos los Layers de OpenStreetMap.
   var baseLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    /* aca se carga el mapa de openStreetMap
-      en LEAFLET ->>> L = objeto de leaflet*/
+    /* aca se carga el mapa de openStreetMap en LEAFLET ->>> L = objeto de leaflet*/
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
@@ -24,14 +23,14 @@ function bootstrap() {
 
   // ejecuta un http request al server y cuando la respuesta es OK, ejecuta un
   // callback sobre los datos recibidos.
-  requestJSON = function(url, callback) { // no se declara var para que sea global a todas las clases
+  requestJSON = function(url, callback, caller) { // no se declara var para que sea global a todas las clases
     var xhttp;
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         console.log("Request status " + this.statusText);
         console.log("llamando funcion callback: " + callback);
-        callback(JSON.parse(this.responseText));
+        callback(JSON.parse(this.responseText), caller);
       }
     };
     xhttp.open("GET", url, true);
@@ -42,6 +41,7 @@ function bootstrap() {
 
   console.log("creando Trackloader");
   var trackLoader = new TrackLoader(trackSource, 42);
+
   console.log("loadTrack");
   trackLoader.loadTrack(map);
 
@@ -56,6 +56,22 @@ function bootstrap() {
 
   console.log("loadRunners");
   runnersLoader.loadRunnersTo(race1K, positionsLoader);
+
+  $(document).ready(function() {
+    $("#myBtn").click(function() {
+      if (trackLoader.finishedLoad && race1K.finishedLoad &&
+        runnersLoader.finishedLoad && positionsLoader.finishedLoad) {
+        alert("Carrera iniciada!");
+        race1K.start();
+      } else {
+        console.log("track loaded: " + trackLoader.finishedLoad);
+        console.log("race loaded: " + race1K.finishedLoad);
+        console.log("runners loaded: " + runnersLoader.finishedLoad);
+        console.log("positions loaded: " + positionsLoader.finishedLoad);
+      } // donde salen los logs? porque no los veo
+    }); // f12 -> console
+  });
+
 
 }
 

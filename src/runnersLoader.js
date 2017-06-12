@@ -1,5 +1,6 @@
   function RunnersLoader(url) {
     this.url = url;
+    this.finishedLoad = false;
 
     var runners = [];
     this.loadRunnersTo = function(race, positionsLoader) {
@@ -19,7 +20,7 @@
         }
       }
 
-      function cargarRunners(runnersResponse) {
+      function cargarRunners(runnersResponse, self) {
         console.log("callback llamado");
         generarArrayDeRunners(runnersResponse.runners);
 
@@ -31,10 +32,10 @@
 
         console.log("loadPositions");
         positionsLoader.loadRunnersPositionsTo(race);
-      }
+self.finishedLoad = true;      }
 
       console.log("ejecutando request sobre url: " + url);
-      requestJSON(url, cargarRunners);
+      requestJSON(url, cargarRunners, this);
 
     }
 

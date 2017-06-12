@@ -1,11 +1,12 @@
   function TrackLoader(url, trackID) {
     this.url = url;
     this.trackID = trackID;
-
     var latlngs = [];
-    this.loadTrack = function(map) {
-      // recibe el track a procesar
+    this.finishedLoad = false;
 
+    this.loadTrack = function(map) {
+
+      // recibe el track a procesar
       function generarArrayDeTrackPositions(track) {
         console.log("generando array de coordenadas de mapa: " + track.id);
         for (var i in track.coordinates) {
@@ -14,7 +15,7 @@
         }
       }
 
-      function cargarMapa(trackResponse) {
+      function cargarMapa(trackResponse, self) {
         console.log("callback llamado");
         generarArrayDeTrackPositions(trackResponse.track);
 
@@ -24,10 +25,11 @@
         }).addTo(map);
         // zoom the map to the polygon
         map.fitBounds(circuito.getBounds());
+        self.finishedLoad = true;
       }
 
       console.log("ejecutando request sobre url: " + url + trackID);
-      requestJSON(url + trackID, cargarMapa);
+      requestJSON(url + trackID, cargarMapa, this);
 
     }
 

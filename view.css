@@ -4,17 +4,19 @@ body {
 
 #mapid {
   background: #CCC;
-  /* display: inline-block;*/
-  /*width: 500px;*/
-  /*height: 500px;*/
-  position: absolute;
+  display: inline-block;
+  width: 500px;
+  height: 500px;
+  position: relative;
   border: 1px solid #AAA;
-  top: 0;
+  top: 50px;
   right: 0;
   bottom: 0;
   left: 0;
   margin: 7px;
+  z-index: -1;
 }
+
 
 
 /*#detail {

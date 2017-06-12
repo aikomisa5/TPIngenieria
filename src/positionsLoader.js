@@ -1,5 +1,6 @@
   function PositionsLoader(url) {
     this.url = url;
+    this.finishedLoad = false;
 
     var runnersPositions = [];
     this.loadRunnersPositionsTo = function(race) {
@@ -23,7 +24,8 @@
         }
       }
 
-      function cargarRunnersPositions(RunnersPositionsResponse) {
+      function cargarRunnersPositions(RunnersPositionsResponse, self) {
+        
         console.log("callback llamado");
         generarArrayDeRunnersPositions(RunnersPositionsResponse.positions);
 
@@ -31,10 +33,11 @@
         runnersPositions.forEach(function(runnerPosition) {
           race.bindRunnerPosition(runnerPosition);
         });
+        self.finishedLoad = true;
       }
 
       console.log("ejecutando request sobre url: " + url);
-      requestJSON(url, cargarRunnersPositions);
+      requestJSON(url, cargarRunnersPositions, this);            
 
     }
 
