@@ -1,20 +1,18 @@
 body {
-  font-family: Courier, "Lucida Console", monospace
+  font-family: Courier, "Lucida Console", monospace;
+  width: 100%;
 }
 
 #mapid {
   background: #CCC;
-  display: inline-block;
-  width: 500px;
+  display: block;
+  max-width:1000px;
+  width: 90%;
   height: 500px;
   position: relative;
   border: 1px solid #AAA;
   top: 50px;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: 7px;
-  z-index: -1;
+  margin: auto;
 }
 
 
