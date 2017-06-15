@@ -1,8 +1,8 @@
 var Race = function(name, map) {
-    this.name = name; // nombre de la carrera
-    this.map = map; // mapa de la carrera
-    this.runnersData = []; //arreglo de corredores, aca se agregan instancias de runner.
-    this.finishedLoad = false;
+    this.name = name;       // nombre de la carrera
+    this.map = map;         // mapa de la carrera
+    this.runnersData = [];  //arreglo de corredores, aca se agregan instancias de runner.
+    this.finishedLoad;      // en un boolean, como es null, te lo devuelve con false por defecto
   
     // dada una posición, busca el runner al que le corresponde
     // y la asocia al mismo.
@@ -13,7 +13,7 @@ var Race = function(name, map) {
                 for (var i in runnerPosition.positions) {
                     runner.addPosition(runnerPosition.positions[i].lat, runnerPosition.positions[i].lon);
                 }
-                console.log("posiciones asociadas a " + runner.showDetails() + " posiciones:");
+                console.log("posiciones asociadas a " + runner.showDetails() + " posiciones:"); //+ runner.id + " posiciones:");
                 runner.historyPositions.forEach(function(position) {
                     console.log(position);
                 });
@@ -23,11 +23,9 @@ var Race = function(name, map) {
     }
 
     this.addRunner = function(runner) {
-
         //Creamos el layer en el mapa para ese runner
         var runnerLayer = L.featureGroup().addTo(this.map); // es un featureGroup
         //porque el mismo permite bindear comportamiento a todos los elementos del layer.
-
         runnerLayer.bindPopup("Corredor " + runner.name + "!"); // bindeo de un popup a todos los markers del grupo.
         // Agregamos el layer al control
         this.map.layersControl.addOverlay(runnerLayer, runner.name);
@@ -36,13 +34,10 @@ var Race = function(name, map) {
             if (typeof newPosition != "undefined") {
                 console.log("Updating view for runner: " + runner.name + "!!");
                 console.log(newPosition);
-
                 // borando los markers ya mostrados.
                 runnerLayer.clearLayers();
-
                 // Opción 1.
                 //runnerLayer.addLayer(L.marker([newPosition.lat, newPosition.lon]));
-
                 // Opción 2.
                 runnerLayer.addLayer(L.circleMarker(newPosition, {
                     radius: 10,
