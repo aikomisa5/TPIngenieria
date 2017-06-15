@@ -13,7 +13,7 @@
             runnersData[i].name,
             runnersData[i].surname,
             runnersData[i].sponsor,
-            runnersData[i].surname
+            runnersData[i].surname                  
           );
           console.log(runner.showDetails());
           runners.push(runner);
@@ -32,11 +32,10 @@
 
         console.log("loadPositions");
         positionsLoader.loadRunnersPositionsTo(race);
-self.finishedLoad = true;      }
+        self.finishedLoad = true;      }
 
       console.log("ejecutando request sobre url: " + url);
       requestJSON(url, cargarRunners, this);
 
     }
-
   }
