@@ -4,7 +4,7 @@ function bootstrap() {
     var trackSource = "https://fastspeedster.herokuapp.com/api/tracks/";
     var runnersSource = "https://fastspeedster.herokuapp.com/api/runners/";
     var positionsSource = "https://fastspeedster.herokuapp.com/api/positions/";
-    var webcamsSource = "https://fastspeedster.herokuapp.com/api/webcams/42/"; // este es solo la camara 42 no?¿
+    var webcamsSource = "https://fastspeedster.herokuapp.com/api/webcams/"; // este es solo la camara 42 no?¿
 
     // Creación del componente mapa de Leaflet.
     var map = L.map("mapid"); // no se declara var para que sea global a todas las clases.
@@ -44,6 +44,12 @@ function bootstrap() {
 
     console.log("loadTrack");
     trackLoader.loadTrack(map);
+
+    console.log("creando WebcamsLoader");
+    var webcamsLoader = new WemcamsLoader(webcamsSource, 42);
+
+    console.log("loadWebCams");
+    webcamsLoader.loadWebcams(map);
 
     console.log("creando Race");
     var race1K = new Race("1K", map);

@@ -13,8 +13,7 @@ var Runner = function(id, name, surname, sponsor) {
     //historicas
     var indiceActual = 0;
     //function que recorre las posiciones una a una
-    //ejecutando la function callback pasada como parametro
-    //(esta function seguramente dibuja en el mapa.)
+    //ejecutando la function callback pasada como parametro  
     this.run = function(mapUpdaterCorredor) {
         var self = this;
         setTimeout(function() {
