@@ -7,12 +7,12 @@
     this.loadWebcams = function(map) {
 
       function mostrarDatos(webcam){
-        var webcam ="<h4> Webcam "
-                    + webcam.id 
-                    + "</h4>"
-                    + "<p> frecuencia: "
+        webcam ="<h3> Webcam "
+                    + webcam.id                     
+                    + "<small> Frecuencia: "
                     + webcam.frecuency
-                    + "</p>";        
+                    + "</small>"
+                    + "</h3>";                    
         $("#webcam").hide();
         $("#webcam").empty();
         $("#webcam").append(webcam);
