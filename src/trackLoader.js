@@ -20,8 +20,9 @@
         generarArrayDeTrackPositions(trackResponse.track);
 
         console.log("añadiendo circuito a mapa");
-        var circuito = L.polygon(latlngs, {
-          color: 'red'
+        var circuito = L.polyline(latlngs, {
+          color: '#4088ff',
+          weight: "10"          
         }).addTo(map);
         // zoom the map to the polygon
         map.fitBounds(circuito.getBounds());

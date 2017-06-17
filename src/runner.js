@@ -26,6 +26,6 @@ var Runner = function(id, name, surname, sponsor) {
     }
 
     this.showDetails = function() {
-        return "corredor: " + name + " " + surname + ", sponsor: " + sponsor.name;
+        return name + " " + surname + " sponsor: " + sponsor.name;
     }
 };

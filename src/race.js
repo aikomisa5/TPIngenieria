@@ -26,7 +26,7 @@ var Race = function(name, map) {
         //Creamos el layer en el mapa para ese runner
         var runnerLayer = L.featureGroup().addTo(this.map); // es un featureGroup
         //porque el mismo permite bindear comportamiento a todos los elementos del layer.
-        runnerLayer.bindPopup("Corredor " + runner.name + "!"); // bindeo de un popup a todos los markers del grupo.
+        runnerLayer.bindPopup(runner.showDetails()); // bindeo de un popup a todos los markers del grupo.
         // Agregamos el layer al control
         this.map.layersControl.addOverlay(runnerLayer, runner.name);
 

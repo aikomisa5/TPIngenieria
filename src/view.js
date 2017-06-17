@@ -57,18 +57,10 @@ function bootstrap() {
     console.log("loadRunners");
     runnersLoader.loadRunnersTo(race1K, positionsLoader);
 
-    $(document).ready(function() {
-        var result = confirm("¿Quieres iniciar la carrera?");
-        console.log("Confirmación: " + result);
-        if (result){
-            alert("Carrera Iniciada!");
-            race1K.start();
-        } // sera true si el usuario pone aceptar
-            
+    $(document).ready(function() {              
         $("#myBtn").click(function() {
             if (trackLoader.finishedLoad && race1K.finishedLoad &&
-                runnersLoader.finishedLoad && positionsLoader.finishedLoad) {
-                alert("Carrera iniciada!");
+                runnersLoader.finishedLoad && positionsLoader.finishedLoad) {                
                 race1K.start();
             } else {
                 console.log("track loaded: " + trackLoader.finishedLoad);
