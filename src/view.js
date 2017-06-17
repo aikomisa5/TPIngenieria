@@ -1,6 +1,6 @@
 //Este modulo inicializa el mapa y pone en marcha la carrera.
 function bootstrap() {
-
+              
     var trackSource = "https://fastspeedster.herokuapp.com/api/tracks/";
     var runnersSource = "https://fastspeedster.herokuapp.com/api/runners/";
     var positionsSource = "https://fastspeedster.herokuapp.com/api/positions/";
@@ -38,7 +38,7 @@ function bootstrap() {
     }
 
     map.layersControl = layersControl; // aca se setea como controlador de capas que se muestran en el mapa al objeto "layersControl":
-
+    $("#runners").hide();
     console.log("creando Trackloader");
     var trackLoader = new TrackLoader(trackSource, 42);
 
@@ -56,12 +56,14 @@ function bootstrap() {
 
     console.log("loadRunners");
     runnersLoader.loadRunnersTo(race1K, positionsLoader);
-
-    $(document).ready(function() {              
+    
+    $(document).ready(function() {
+        
         $("#myBtn").click(function() {
             if (trackLoader.finishedLoad && race1K.finishedLoad &&
                 runnersLoader.finishedLoad && positionsLoader.finishedLoad) {                
                 race1K.start();
+                $("#runners").show(500); 
             } else {
                 console.log("track loaded: " + trackLoader.finishedLoad);
                 console.log("race loaded: " + race1K.finishedLoad);

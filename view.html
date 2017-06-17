@@ -25,21 +25,27 @@
     <script src="./src/sponsor.js"></script>
     <script src="./src/trackLoader.js"></script>
     <script src="./src/runnersLoader.js"></script>
-    <script src="./src/positionsLoader.js"></script>
-    <script src="./src/webcamsLoader.js"></script>
-
+    <script src="./src/positionsLoader.js"></script>    
     <script src="./src/view.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">            
-            <div class="col-md-12"><button id="myBtn">Iniciar Carrera!</button></div>
-        </div>
-        <div class="row">
-            <div class="col-md-12" id="mapid"></div>            
-        </div>
+  <div class="container">
+    <div class="row">            
+      <div class="col-md-12"><button id="myBtn">Iniciar Carrera!</button></div>
     </div>
+    <div class="row">
+      <div class="col-md-9" id="mapid"></div>            
+      <div class="col-md-3" id="runnersList">
+        <h2>Corredores</h2>
+        <div id="runners">                         
+        </div>            
+      </div>            
+    </div>
+    <div class="row">            
+      <div class="col-md-12" id="wemcam"></div>
+    </div>
+  </div>
 </body>
 
 </html>

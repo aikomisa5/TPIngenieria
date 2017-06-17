@@ -57,6 +57,17 @@ var Race = function(name, map) {
         })
     }
 
+    this.loadListOfRunners = function(){
+      this.runnersData.forEach(function(data){
+        var runner = data.runner;
+        var itemList ="<a class=\"list-group-item\"><h4 class=\"list-group-item-heading\">"
+                      + runner.name + " " +  runner.surname 
+                      + "</h4><p class=\"list-group-item-text\">" 
+                      + runner.sponsor.name + "</p></a>";
+        $("#runners").append(itemList);
+      });
+    }
+
     // toma cada uno de esos runners que estan en runnersdata y lo dibuja en el mapa
     this.start = function() {
         this.runnersData.forEach(function(data) {

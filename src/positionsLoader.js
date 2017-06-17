@@ -32,6 +32,7 @@
         console.log("asociando posiciones a corredores");
         runnersPositions.forEach(function(runnerPosition) {
           race.bindRunnerPosition(runnerPosition);
+          race.loadListOfRunners();
         });
         self.finishedLoad = true;
       }
