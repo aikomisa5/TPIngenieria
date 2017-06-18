@@ -58,12 +58,10 @@ var Race = function(name, map) {
     }
 
     this.loadListOfRunners = function(){
-      this.runnersData.forEach(function(data){
+        console.log("cargando lista de corredores length: "+ this.runnersData.length);
+      this.runnersData.forEach(function(data){        
         var runner = data.runner;
-        var itemList ="<a class=\"list-group-item\"><h4 class=\"list-group-item-heading\">"
-                      + runner.name + " " +  runner.surname 
-                      + "</h4><p class=\"list-group-item-text\">" 
-                      + runner.sponsor.name + "</p></a>";
+        var itemList ="<a class=\"list-group-item\"><h4 class=\"list-group-item-heading\">"+ runner.name + " " +  runner.surname + "</h4><p class=\"list-group-item-text\">" + runner.sponsor.name + "</p></a>";
         $("#runners").append(itemList);
       });
     }
