@@ -34,10 +34,10 @@
                   race.bindRunnerPosition(runnerPosition);
 
               });
-              race.loadListOfRunners();
+
               self.finishedLoad = true;
           }
-
+          race.loadListOfRunners();
           console.log("ejecutando request sobre url: " + url);
           requestJSON(url, cargarRunnersPositions, this);
 
