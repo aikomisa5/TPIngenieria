@@ -3,47 +3,58 @@
 
 <head>
     <meta charset="utf-8">
+
+    <!-- info requerida por bootstrap-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>FastSpedster</title>
+    <title>DEMO MAPA-"Reservoir dogs"</title>
 
-
+    <!-- carga del css de bootstrap con estilos predefinidos-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- carga de jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- carga de bootstrap.js-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- <script src="./src/jquery-3.1.1.min.js"></script> -->
     <!-- include leaflet -->
     <link rel="stylesheet" href="./leaflet/leaflet.css" />
     <script src="./leaflet/leaflet.js"></script>
 
-    <!-- include race, runner y view -->
+    <!-- carga de css propio y modulos propios -->
     <link rel="stylesheet" type="text/css" media="screen" href="view.css" />
     <script src="./src/race.js"></script>
     <script src="./src/runner.js"></script>
     <script src="./src/position.js"></script>
     <script src="./src/sponsor.js"></script>
-    <script src="./src/trackLoader.js"></script>    
+    <script src="./src/trackLoader.js"></script>
     <script src="./src/webcamsLoader.js"></script>
     <script src="./src/runnersLoader.js"></script>
-    <script src="./src/positionsLoader.js"></script>    
-    <script src="./src/view.js"></script>
+    <script src="./src/positionsLoader.js"></script>
+    <script src="./src/loader.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <div class="row"  id="header">         
-      <div class="col-md-6"><h3>Sistema Maratón</h3> </div>
-        <div class="col-md-3"><h3><button id="myBtn">Iniciar Carrera!</button></h3></div>
-        <div class="col-md-3" id="webcam"></div>
+    <div class="container">
+        <div class="row" id="header">
+            <div class="col-md-6">
+                <h3>Sistema Maratón</h3> </div>
+            <div class="col-md-3">
+                <h3><button id="myBtn">Iniciar Carrera!</button></h3></div>
+            <div class="col-md-3" id="webcam"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" id="aviso"></div>
+        </div>
     </div>
     <div class="row">
-      <div class="col-md-9" id="mapid"></div>            
-      <div class="col-md-3" id="runnersList">
-        <h2>Corredores</h2>
-        <div id="runners">                         
-        </div>            
-      </div>            
+        <div class="col-md-9" id="mapid"></div>
+        <div class="col-md-3" id="runnersList">
+            <h2>Corredores</h2>
+            <div id="runners">
+            </div>
+        </div>
     </div>
 </body>
 

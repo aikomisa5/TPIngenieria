@@ -1,27 +1,28 @@
   function PositionsLoader(url) {
       this.url = url;
       this.finishedLoad = false;
-
       var runnersPositions = [];
+
+      // recibe los datos de posiciones a procesar
       this.loadRunnersPositionsTo = function(race) {
 
-          // recibe las positions a procesar
           function generarArrayDeRunnersPositions(runnersPositionsData) {
-              var self = this;
+
               console.log("generando array de positions:");
-              for (var i in runnersPositionsData) {
+              runnersPositionsData.forEach(function(data) {
                   var positionsData = [];
-                  for (var j in runnersPositionsData[i].positions) {
-                      positionsData.push(new Position(runnersPositionsData[i].positions[j].lat,
-                          runnersPositionsData[i].positions[j].lon));
-                  }
+
+                  data.positions.forEach(function(position) {
+                      positionsData.push(new Position(position.lat, position.lon));
+                  });
+
                   var runnerPosition = {
-                      id: runnersPositionsData[i].runner,
+                      id: data.runner,
                       positions: positionsData
                   };
                   console.log(runnerPosition.positions);
                   runnersPositions.push(runnerPosition);
-              }
+              });
           }
 
           function cargarRunnersPositions(RunnersPositionsResponse, self) {
@@ -32,15 +33,12 @@
               console.log("asociando posiciones a corredores");
               runnersPositions.forEach(function(runnerPosition) {
                   race.bindRunnerPosition(runnerPosition);
-
               });
 
               self.finishedLoad = true;
           }
-          race.loadListOfRunners();
+
           console.log("ejecutando request sobre url: " + url);
           requestJSON(url, cargarRunnersPositions, this);
-
       }
-
   }

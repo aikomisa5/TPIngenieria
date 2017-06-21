@@ -6,7 +6,7 @@ var Runner = function(id, name, surname, sponsor) {
     this.sponsor = sponsor;
     this.historyPositions = [];
     this.addPosition = function(lat, lon) {
-    this.historyPositions.push(new Position(lat, lon));
+        this.historyPositions.push(new Position(lat, lon));
     }
 
     //inicialización del indice para recorrer el arreglo de posiciones
@@ -20,7 +20,7 @@ var Runner = function(id, name, surname, sponsor) {
             mapUpdaterCorredor(self.historyPositions[indiceActual]);
             indiceActual++;
             if (indiceActual < self.historyPositions.length)
-                self.run(mapUpdaterCorredor);            
+                self.run(mapUpdaterCorredor);
         }, 1000); //1000 ms -> 1 s, la function se ejecuta cada 1 segundo.
     }
 

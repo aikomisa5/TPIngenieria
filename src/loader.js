@@ -1,6 +1,22 @@
 //Este modulo inicializa el mapa y pone en marcha la carrera.
 function bootstrap() {
-              
+
+    // ejecuta un http request al server y cuando la respuesta es OK, ejecuta un
+    // callback sobre los datos recibidos.
+    requestJSON = function(url, callback, caller) { // no se declara var para que sea global a todas las clases
+        var xhttp;
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) { // Maxi: sigo sin saber por que ese 4 y 200 jaja
+                console.log("Request status " + this.statusText);
+                console.log("llamando funcion callback: " + callback);
+                callback(JSON.parse(this.responseText), caller);
+            }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
+
     var trackSource = "https://fastspeedster.herokuapp.com/api/tracks/";
     var runnersSource = "https://fastspeedster.herokuapp.com/api/runners/";
     var positionsSource = "https://fastspeedster.herokuapp.com/api/positions/";
@@ -20,22 +36,6 @@ function bootstrap() {
         "Base": baseLayer
     });
     layersControl.addTo(map);
-
-    // ejecuta un http request al server y cuando la respuesta es OK, ejecuta un
-    // callback sobre los datos recibidos.
-    requestJSON = function(url, callback, caller) { // no se declara var para que sea global a todas las clases
-        var xhttp;
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) { // Maxi: sigo sin saber por que ese 4 y 200 jaja
-                console.log("Request status " + this.statusText);
-                console.log("llamando funcion callback: " + callback);
-                callback(JSON.parse(this.responseText), caller);
-            }
-        };
-        xhttp.open("GET", url, true);
-        xhttp.send();
-    }
 
     map.layersControl = layersControl; // aca se setea como controlador de capas que se muestran en el mapa al objeto "layersControl":
     $("#runners").hide();
@@ -62,29 +62,28 @@ function bootstrap() {
 
     console.log("loadRunners");
     runnersLoader.loadRunnersTo(race1K, positionsLoader);
-    
-    $(document).ready(function() {
-        
+
+    $(document).ready(function() { // si se termino de cargar todo el html
         $("#myBtn").click(function() {
-            if (trackLoader.finishedLoad && race1K.finishedLoad &&
-                runnersLoader.finishedLoad && positionsLoader.finishedLoad) {                
+            if (cargaFinalizada()) {
                 race1K.start();
-                $("#runners").show(500); 
+                $("#runners").show(500);
             } else {
-                console.log("track loaded: " + trackLoader.finishedLoad);
-                console.log("race loaded: " + race1K.finishedLoad);
-                console.log("runners loaded: " + runnersLoader.finishedLoad);
-                console.log("positions loaded: " + positionsLoader.finishedLoad);
+                console.log("carga incompleta");
+                // un warning de bootstrap para indicar que la carga no ha finalizado /
+                var alert = "<div class=\"alert alert-warning alert-dismissable\">" +
+                    "\<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">×</a>" +
+                    "<strong>Atención!</strong> No se han cargado todos los elementos en el mapa.</div>";
+                $("#aviso").append(alert).show(500); //y aca le decimos a jquery que lo cargue en el html
+
             }
         });
     });
 
-    /*posible cambio para quitar el boton
-    var result = confirm("¿Quieres iniciar la carrera?");
-    if (result) // sera true si el usuario pone aceptar
-      alert("Carrera Iniciada!");
-    */
-
+    //determina si la carga de los datos finalizo o no.
+    function cargaFinalizada() {
+        return trackLoader.finishedLoad && race1K.finishedLoad && runnersLoader.finishedLoad && positionsLoader.finishedLoad && webcamsLoader.finishedLoad;
+    }
 }
 
 $(bootstrap);
