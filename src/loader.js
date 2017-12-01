@@ -18,12 +18,15 @@ function bootstrap() {
     }
 
     var trackSource = "https://fastspeedster.herokuapp.com/api/tracks/";
-    var runnersSource = "https://fastspeedster.herokuapp.com/api/runners/";
+    var runnersSource = "https://api.myjson.com/bins/14m1xf";
+    //var runnersSource = "https://fastspeedster.herokuapp.com/api/runners/";
     var positionsSource = "https://fastspeedster.herokuapp.com/api/positions/";
     var webcamsSource = "https://fastspeedster.herokuapp.com/api/webcams/"; // este es solo la camara 42 no?¿
 
+    var centrosMedicosSource = "https://api.myjson.com/bins/bjxfn";
+
     // Creación del componente mapa de Leaflet.
-    var map = L.map("mapid"); // no se declara var para que sea global a todas las clases.
+    var map = L.map("mapid").setView([-34.458431, -58.914743], 14); // no se declara var para que sea global a todas las clases.
 
     // Agregamos los Layers de OpenStreetMap.
     var baseLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -38,6 +41,12 @@ function bootstrap() {
     layersControl.addTo(map);
 
     map.layersControl = layersControl; // aca se setea como controlador de capas que se muestran en el mapa al objeto "layersControl":
+
+    console.log("cargando centros");
+    var centroMedicoLoader = new centrosLoader(centrosMedicosSource);
+     centroMedicoLoader.loadCentros(map);
+     
+/*
     $("#runners").hide();
     console.log("creando Trackloader");
     var trackLoader = new TrackLoader(trackSource, 42);
@@ -62,7 +71,7 @@ function bootstrap() {
 
     console.log("loadRunners");
     runnersLoader.loadRunnersTo(race1K, positionsLoader);
-
+*/
     $(document).ready(function() { // si se termino de cargar todo el html
         $("#myBtn").click(function() {
             if (cargaFinalizada()) {
