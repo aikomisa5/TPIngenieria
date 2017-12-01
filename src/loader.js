@@ -23,7 +23,7 @@ function bootstrap() {
     var positionsSource = "https://fastspeedster.herokuapp.com/api/positions/";
     var webcamsSource = "https://fastspeedster.herokuapp.com/api/webcams/"; // este es solo la camara 42 no?¿
 
-    var centrosMedicosSource = "https://api.myjson.com/bins/bjxfn";
+    var centrosMedicosSource = "http://www.json-generator.com/api/json/get/cekJFurVFe?indent=2";
 
     // Creación del componente mapa de Leaflet.
     var map = L.map("mapid").setView([-34.458431, -58.914743], 14); // no se declara var para que sea global a todas las clases.
@@ -45,7 +45,7 @@ function bootstrap() {
     console.log("cargando centros");
     var centroMedicoLoader = new centrosLoader(centrosMedicosSource);
      centroMedicoLoader.loadCentros(map);
-     
+
 /*
     $("#runners").hide();
     console.log("creando Trackloader");
