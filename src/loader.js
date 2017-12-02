@@ -21,7 +21,7 @@ function bootstrap() {
     var runnersSource = "https://api.myjson.com/bins/14m1xf";
     //var runnersSource = "https://fastspeedster.herokuapp.com/api/runners/";
     var positionsSource = "https://fastspeedster.herokuapp.com/api/positions/";
-    var webcamsSource = "https://fastspeedster.herokuapp.com/api/webcams/"; // este es solo la camara 42 no?¿
+    //var webcamsSource = "https://fastspeedster.herokuapp.com/api/webcams/"; // este es solo la camara 42 no?¿
 
     var centrosMedicosSource = "https://raw.githubusercontent.com/aikomisa5/TPIngenieria/master/centrosPilar.json";
 
