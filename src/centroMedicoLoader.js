@@ -3,9 +3,13 @@ function centrosLoader(url) {
     var latlngs = [];
     this.finishedLoad = false;
 
+  /*  this.cargarCiertoTipoDeCentro = function(enum tipoCentro){
+
+  }*/
+
     this.loadCentros = function(map) {
         //modifica el html para mostrar la info del centro
-        function mostrarDatos(centro) {
+      /*  function mostrarDatos(centro) {
             centro = "<h3 > Centro " +
                 centro.id +
                 "<small> Nombre: " +
@@ -23,7 +27,7 @@ function centrosLoader(url) {
             $("#centro").append(centro);
             $("#centro").show(500);
         }
-
+*/
         // recibe el listado de centros a procesar
         function generarArrayDeCentrosPositions(centrosList) {
             console.log("generando array de coordenadas de centros");

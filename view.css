@@ -6,7 +6,20 @@ body {
 }
 
 #mapid {
-    height: 95vh;
+    height: 100vh;
+    width:  128vh;
+}
+
+#barraLat{
+  margin-top: 330px;
+}
+
+#tablaCentros{
+  color: white;
+}
+
+#blanco{
+  color: white;
 }
 
 #myBtn {

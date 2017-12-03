@@ -9,7 +9,7 @@
     <!-- info requerida por bootstrap-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Centros Médicos de Pilar"</title>
+    <title>Centros Médicos de Pilar</title>
 
     <!-- carga del css de bootstrap con estilos predefinidos-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -38,6 +38,7 @@
     <script src="./src/positionsLoader.js"></script>
     <script src="./src/centroMedicoLoader.js"></script>
     <script src="./src/centroMedico.js"></script>
+    <script src="./src/tipoCentro.js"></script>
     <script src="./src/loader.js"></script>
 
 
@@ -45,11 +46,13 @@
 
 <body>
 
+
   <style>
+
     body {
-      margin-left: 200px;
-      margin-top: 100px;
-      margin-bottom: 200px;
+      margin-left: 0px;
+      margin-top: 30px;
+      margin-bottom: 0px;
       background-image: url("https://images8.alphacoders.com/292/292577.jpg");
     }
     h3 {
@@ -58,42 +61,193 @@
     }
     h1 {
         color: white;
-        text-align: center;
+    }
+    p{
+      color: white;
+    }
+    h2{
+      color: white;
     }
   </style>
+
   <div class="container">
-         <div class="row" id="header">
-             <div class="col-md-6">
-                 <h1>Sistema de Centros Médicos de Pilar</h1></div>
-             <!--<div class="col-md-3">
-                 <h3><button id="myBtn">Iniciar Carrera!</button></h3></div>-->
-             <div class="col-md-3" id="webcam"></div>
-         </div>
-         <div class="row">
-             <div class="col-md-12" id="aviso"></div>
-         </div>
+  <div class="row content">
+    <div class="col-sm-2 sidenav" id="barraLat">
+      <table>
+        <tr>
+          <td id="blanco">
+            <label>Especialidad:</label>
+          </td>
+          <td>
+            <select id="rec_mode">
+            </select>
+          </td>
+        </tr>
+      </table>
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+    </div>
+    <div class="col-sm-8 text-left">
+      <h1>Sistema de Centros Médicos de Pilar</h1>
+      <p>Bienvenido al sistema de Centros Médicos ubicados en el partido de Pilar</p>
+      <hr>
+      <div class="col-md-9" id="mapid"></div>
 
-         <div class="dropdown">
-  <h2><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-    Categoría
-  </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Link 1</a>
-    <a class="dropdown-item" href="#">Link 2</a>
-    <a class="dropdown-item" href="#">Link 3</a>
-  </div></h2>
+    </div>
+
   </div>
-     </div>
-     <div class="row">
-         <div class="col-md-9" id="mapid"></div>
+</div>
+<div class="container">
+<div class="row content">
+  <div class="col-sm-2 sidenav">
+  </div>
+  <div class="col-sm-8 text-left">
+    <hr>
+    <h2>Detalles de los centros encontrados</h2>
+  <div class="table-responsive">
+  <table class="table" id="tablaCentros">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Colectivos</th>
+        <th>Horarios</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>35</td>
+        <td>New York</td>
+        <td>USA</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+
+</div>
+</div>
 
 
 
-         <div class="col-md-3" id="runnersList">
-             <h3>Datos del Centro Médico</h3>
-             <div id="runners">
-             </div>
-         </div>
-     </div>
-    <div class="row">
+
+    </body>
 </html>

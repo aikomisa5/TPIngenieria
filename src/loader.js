@@ -46,6 +46,31 @@ function bootstrap() {
     var centroMedicoLoader = new centrosLoader(centrosMedicosSource);
      centroMedicoLoader.loadCentros(map);
 
+
+     var optionList = document.getElementById('rec_mode').options;
+      var options = [
+        {
+          "text"  : "Seleccione..",
+          "value" : "Seleccione",
+          "selected" : true
+        },
+        {
+          "text"  : "Pediatría",
+          "value" : "Pediatría"
+        },
+        {
+          "text"     : "Psicología",
+          "value"    : "Psicología",
+        },
+        {
+          "text"  : "Urología",
+          "value" : "Urología"
+        }
+      ];
+
+      options.forEach( (option) => optionList.add( new Option(option.text, option.value, option.selected ) ));
+
+
 /*
     $("#runners").hide();
     console.log("creando Trackloader");
