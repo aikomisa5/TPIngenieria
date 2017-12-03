@@ -100,8 +100,9 @@ function bootstrap() {
     $(document).ready(function() { // si se termino de cargar todo el html
         $("#myBtn").click(function() {
             if (cargaFinalizada()) {
-                race1K.start();
-                $("#runners").show(500);
+              var valorTipo = $( "#rec_mode option:selected" ).text();
+                centroMedicoLoader.cargarCentrosPorTipo(valorTipo, map);
+                //$("#runners").show(500);
             } else {
                 console.log("carga incompleta");
                 // un warning de bootstrap para indicar que la carga no ha finalizado /
@@ -116,7 +117,7 @@ function bootstrap() {
 
     //determina si la carga de los datos finalizo o no.
     function cargaFinalizada() {
-        return trackLoader.finishedLoad && race1K.finishedLoad && runnersLoader.finishedLoad && positionsLoader.finishedLoad && webcamsLoader.finishedLoad;
+        return centroMedicoLoader.finishedLoad;
     }
 }
 

@@ -1,7 +1,8 @@
-var CentroMedico = function(id, nombre, telefono, telefono2, horario, pais, provincia, localidad, calle, numero) {
+var CentroMedico = function(id, nombre, especialidad, telefono, telefono2, horario, pais, provincia, localidad, calle, numero) {
 
     this.id = id;
     this.nombre = nombre;
+    this.especialidad = especialidad;
     this.telefono = telefono;
     this.telefono2 = telefono2;
     this.horario = horario;

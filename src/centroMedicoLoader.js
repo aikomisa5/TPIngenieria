@@ -1,11 +1,49 @@
 function centrosLoader(url) {
     this.url = url;
     var latlngs = [];
+    var centrosLista = [];
     this.finishedLoad = false;
 
   /*  this.cargarCiertoTipoDeCentro = function(enum tipoCentro){
 
   }*/
+
+    this.cargarCentrosPorTipo = function (tipo, map){
+      var centroLayer = L.featureGroup().addTo(map); // es un featureGroup
+      map.layersControl.removeLayer(centroLayer);
+        map.layersControl.addOverlay(centroLayer, "Centros Medicos");
+        console.log("here", tipo);
+        if(centrosLista.length==0){
+          console.log("VACIO");
+        }
+        function buscandoCentros(){
+        for (var i = 0; i <= centrosLista.length; i++) {
+          if (centrosLista[i].especialidad.equals(tipo)){
+            console.log("HERE3");
+          }
+        else {
+          console.log("No matchea ningun centro");
+        }};
+        }
+      }
+
+        /*$.each(centrosLista, function(index, value) {
+          console.log(value);
+        });*/
+          /*if (item.especialidad.equals(tipo)){
+            console.log("here2:");
+          }*/
+
+      /*centrosLista.forEach( (cent) => {if (cent.especialidad.equals(tipo)){
+          var centroLayer = L.featureGroup().addTo(map);
+          consolo.log("here2: ", cent.especialidad);
+          marker = L.marker([cent.coordinate.lat, cent.coordinate.lon]);
+
+          marker.bindPopup("<b>"+cent.nombre+"</b>"+"<br>"+cent.calle + " " + cent.numero).openPopup();
+
+          centroLayer.addLayer(marker);
+        }});*/
+
 
     this.loadCentros = function(map) {
         //modifica el html para mostrar la info del centro
@@ -35,6 +73,8 @@ function centrosLoader(url) {
             centrosList.forEach(function(centro) {
                 console.log("coordenada centro: " + centro.lat + ", " + centro.lon);
                 latlngs.push([centro.lat, centro.lon]);
+                centrosLista.push([new centroMedico(centro.id, centro.nombre, centro.especialidad, centro.telefono, centro.telefono2, centro.horario,
+                centro.pais, centro.provincia, centro.localidad, centro.calle, centro.numero, centro.addPosition(centro.lat, centro.lon))]);
             });
         }
 
@@ -54,6 +94,8 @@ function centrosLoader(url) {
                     mostrarDatos(centro);
                 });*/
                 centroLayer.addLayer(marker);
+                centrosLista.push([new centroMedico(centro.id, centro.nombre, centro.especialidad, centro.telefono, centro.telefono2, centro.horario,
+                centro.pais, centro.provincia, centro.localidad, centro.calle, centro.numero, centro.addPosition(centro.lat, centro.lon))]);
 
             });
 
